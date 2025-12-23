@@ -15,6 +15,7 @@ namespace projec.Data
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<TeamPlayer> TeamPlayers { get; set; }
+        public DbSet<MatchRequest> MatchRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
