@@ -25,7 +25,7 @@ namespace projec.Controllers
             return Ok(profile);
         }
         
-        // Bonus: Kendi profilini getir
+    
         [HttpGet("me")]
         public async Task<IActionResult> GetMyProfile()
         {

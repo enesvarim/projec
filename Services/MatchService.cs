@@ -17,22 +17,28 @@ namespace projec.Services
         public async Task<string> SendMatchRequest(int captainId, MatchRequestDto request)
         {
             var requestingTeam = await _context.Teams.FindAsync(request.RequesterTeamId);
-            if (requestingTeam == null) return "Kendi takımınız bulunamadı.";
+            if (requestingTeam == null) 
+                return "Kendi takiminiz bulunamadi.";
 
-            if (requestingTeam.CaptainId != captainId) return "Sadece takım kaptanı maç isteği gönderebilir.";
+            if (requestingTeam.CaptainId != captainId) 
+                return "Sadece takım kaptani maç isteği gönderebilir.";
 
             var opponentTeam = await _context.Teams.FindAsync(request.OpponentTeamId);
-            if (opponentTeam == null) return "Rakip takım bulunamadı.";
+            if (opponentTeam == null)
+                return "Rakip takim bulunamadı.";
 
-            if (requestingTeam.Id == opponentTeam.Id) return "Kendi kendinize maç yapamazsınız.";
+            if (requestingTeam.Id == opponentTeam.Id) 
+                return "Kendi kendinize maç yapamazsiniz.";
 
             // Kişi sayısı kontrolü
             if (requestingTeam.PlayerCount != opponentTeam.PlayerCount)
-                return $"Takımların oyuncu sayıları eşit değil! ({requestingTeam.Name}: {requestingTeam.PlayerCount} - {opponentTeam.Name}: {opponentTeam.PlayerCount})";
+                return $"Takimlarin oyuncu sayilarıieşit değil! ({requestingTeam.Name}: {requestingTeam.PlayerCount} - {opponentTeam.Name}: {opponentTeam.PlayerCount})";
 
             var field = await _context.Fields.FindAsync(request.FieldId);
-            if (field == null) return "Seçilen saha bulunamadı.";
-            if (!field.IsActive) return "Seçilen saha aktif değil.";
+            if (field == null) 
+                return "Seçilen saha bulunamadı.";
+            if (!field.IsActive) 
+                return "Seçilen saha aktif değil.";
 
             var matchRequest = new MatchRequest
             {
@@ -146,7 +152,7 @@ namespace projec.Services
             }
 
             await _context.SaveChangesAsync();
-            return "Maç sonucu ve istatistikler kaydedildi! 🏆";
+            return "Maç sonucu ve istatistikler kaydedildi";
         }
     }
 }

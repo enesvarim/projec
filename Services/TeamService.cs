@@ -27,7 +27,7 @@ namespace projec.Services
             _context.Teams.Add(team);
             await _context.SaveChangesAsync();
 
-            // Kaptanı da takıma oyuncu olarak ekleyelim
+            // oluşturan oyuncuyu kaptan olarak atama
             var teamPlayer = new TeamPlayer
             {
                 TeamId = team.Id,
